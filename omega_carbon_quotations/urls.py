@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from quotations import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Auth URL's
+    path('login/', views.loginuser, name='loginuser'),
+    path('logout/', views.logoutuser, name='logoutuser'),
+
+    # Main app URL's
+    path('', views.home, name='home'),
+    path('create/', views.createquotation, name='createquotation'),
+    path('search/', views.searchquotation, name='searchquotation'),
+    path('clients/', views.clientslist, name='clientslist')
+
 ]

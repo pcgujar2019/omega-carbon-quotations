@@ -1,0 +1,26 @@
+{% extends "quotations/base.html"%}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h2>Search Quotation</h2>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            
+        </form>
+        <hr>
+    </div>
+</div>
+
+{% endblock %}
