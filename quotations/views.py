@@ -22,7 +22,7 @@ def loginuser(request):
             return render(request, 'quotations/loginuser.html', {'form':AuthenticationForm(), 'error': 'Username and Password did not match!'})
         else:
             login(request, user)
-            return redirect('createquotation')
+            return redirect('createquotationstep1')
 
 @login_required
 def logoutuser(request):
@@ -40,14 +40,15 @@ def home(request):
 # create quotation main view
 @login_required
 def createquotationstep1(request):
-    if request.method == "POST" and 'newclient' in request.POST:
+    if request.method == "POST" and 'additembutton' in request.POST:
         try:
             form = AddNewClientForm(request.POST)
             form.save()
-            # print(form)
             return render(request, 'quotations/create_step2.html', {'form': form})
         except ValueError:  # if text exceeds max length
             return render(request, 'quotations/create_step1.html', {'form': AddNewClientForm(), 'error': 'Bad data passed in!'})
+    elif request.method == "POST" and 'additembutton' in request.POST:
+        pass
     else:
         return render(request, 'quotations/create_step1.html')
         

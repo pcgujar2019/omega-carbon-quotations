@@ -8,37 +8,17 @@
         <h3>Create Quotation</h3>
     </div>
 </div>
-<div class="text-center">
-    <h6>STEP 1: CLIENT DETAILS</h6>
-</div>
 <div class="row justify-content-center mt-5">
     <div class="col-md-8">
-        
-        <div class="jumbotron">
-            <form method="POST" id="selectclientform">
-                {% csrf_token %}
-                <!-- Client Details with Reference Number and dated -->
-                <div class="form-group">
-                    <label for="selectclientinput">Select Client</label>
-                    <input type="text" name="selectedclient" class="form-control" id="selectclientinput">
-                </div>
-                <button type="submit" class="btn btn-primary" name="existingclient" id="oldclientbtn">NEXT</button>
-            </form>
-        </div>
-        
-            <div class="text-right">
-                <a href="#" id="addclientlink">OR ADD NEW CLIENT</a>               
-            </div>
-       
-            <div class="jumbotron" id="addclientform">
+        <div class="jumbotron" id="addclientform">
             {% if error %}
-                <div class="alert alert-danger" role="alert">
-                    {{ error }}
-                </div>
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
             {% endif %}
-                
-                <form method="post">
-                {% csrf_token %}
+            <form method="post">
+                <form id="createform1">
+                    {% csrf_token %}
 
                     <div class="form-group">
                         <label for="nameInput">Enter Client Name</label>
@@ -46,10 +26,9 @@
                     </div>
                     <div class="form-group">
                         <label for="addressInput">Enter Client Address</label>
-                        <input name="address" class="form-control" required></input>
-                        <!-- <input type="text" name="address" class="form-control" id="addressInput"> -->
+                        <textarea name="address" form="createform1" class="form-control" rows="4" required></textarea>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="referenceInput">Enter Client Email</label>
                         <input type="text" name="email" class="form-control" id="referenceInput">
@@ -58,88 +37,158 @@
                         <label for="referenceInput">Enter Client Contact</label>
                         <input type="text" name="contact" class="form-control" id="referenceInput">
                     </div>
-                    <button type="submit" class="btn btn-primary" name="newclient">NEXT</button>
                 </form>
-            </div>            
+                <hr><br>
+
+                <form id="createform2">
+
+                    <div class="form-group">
+                        <label for="referenceInput">Enter Reference Number</label>
+                        <input type="text" name="referencenumber" class="form-control" id="referenceInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Dated</label>
+                        <input type="text" name="date" class="form-control" id="date">
+                    </div>
+
+                    <hr><br>
+
+                    <div class="form-group">
+                        <label for="salutation">Enter Salutation</label>
+                        <input id="salutation" name="salutation" type="text" class="form-control"></input>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Enter Subject</label>
+                        <input id="subject" name="subject" type="text" class="form-control"></input>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="introduction">Enter Introduction</label>
+                        <textarea form="createform" id="introduction" name="introduction" rows="4"
+                            class="form-control"></textarea>
+                    </div>
+
+                    <hr><br>
+
+
+                    <hr><br>
+
+                    <!-- Terms and Conditions Section -->
+                    <h6>Terms and Conditions</h6>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <!-- Use FOR LOOP TO SHOW ALL ADDED ITEMS -->
+                            <tr>
+                                <td>1.</td>
+                                <td>Price</td>
+                                <td>:-</td>
+                                <td>The price quoted is basic exclusive of taxes and duties</td>
+                                <td><button type="button" class="btn btn-primary">Edit</button></td>
+                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <button class="btn btn-success" type="button">Add</button>
+                    </div>
+                    <hr><br>
+
+                    <div class="form-group">
+                        <label for="closing">Enter Closing</label>
+                        <textarea form="createform" id="closing" name="closing" rows="3"
+                            class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="signature">Enter Signature</label>
+                        <textarea form="createform" id="signature" name="signature" rows="3"
+                            class="form-control"></textarea>
+                    </div>
+                    <hr><br>
+                </form>
+
+
+                <!-- Quotation Items (display) -->
+                <!-- ADD IF CONDITION (display when there is item added) -->
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">HSN</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Rate</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Use FOR LOOP TO SHOW ALL ADDED ITEMS -->
+                        <tr>
+                            <td>1</td>
+                            <td>Carbon brush for 80KW IEC make DC motor, RPM-750. FR:ILFC200L M/c no:2014194-2</td>
+                            <td>15.5 X 32 X 40</td>
+                            <td>323432</td>
+                            <td>300</td>
+                            <td>300.00</td>
+                            <td>90000.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Quotation item add form -->
+                <form method="post" id="createform3">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-8">
+                            <div class="form-group">
+                                <label for="itemname">Enter Item</label>
+                                <input type="text" name="name" class="form-control" id="itemname">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="form-group">
+                                <label for="hsncode">Enter HSN Code</label>
+                                <input type="text" name="hsncode" class="form-control" id="hsncode">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-cols-3">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="size">Enter Size</label>
+                                <input type="text" name="size" class="form-control" id="size">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="text" name="quantity" class="form-control" id="quantity">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="rate">Rate</label>
+                                <input type="text" name="rate" class="form-control" id="rate">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-success btn-sm" name="additembutton">
+                            Add Item
+                        </button>
+                    </div>
+                    <br><br>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary" name="newclient">FINISH AND PREVIEW</button>
+                    </div>
+                </form>
+            </form>
+        </div>
     </div>
 </div>
 
-            <!-- <div class="form-group">
-                <label for="referenceInput">Enter Reference Number</label>
-                <input type="text" name="referencenumber" class="form-control" id="referenceInput">
-            </div>
-            <div class="form-group">
-                <label for="date">Dated</label>
-                <input type="text" name="date" class="form-control" id="date">
-            </div> -->
-            
-            
-            
-
-            <!-- Quotation item add form -->
-            <!-- <div class="form-group">
-                <label for="itemname">Enter Item</label>
-                <input type="text" name="itemname" class="form-control" id="itemname">
-            </div>
-            <div class="row row-cols-3">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="size">Enter Size</label>
-                        <input type="text" name="size" class="form-control" id="size">  
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="quantity">Quantity</label>
-                        <input type="text" name="quantity" class="form-control" id="quantity">  
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="rate">Rate</label>
-                        <input type="text" name="rate" class="form-control" id="rate">  
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="text-center">
-                <button type="submit" class="btn btn-outline-success btn-sm" name="add_item_button">
-                    Add Item
-                </button>    
-            </div> -->
-
-            <!-- Quotation Items (display) -->
-            <!-- ADD IF CONDITION (display when there is item added) -->
-            <!-- <table class="table table-borderless">
-                <thead>
-                    <tr>
-                      <th scope="col">No</th>
-                      <th scope="col">Item</th>
-                      <th scope="col">Size</th>
-                      <th scope="col">Qty</th>
-                      <th scope="col">Rate</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    Use FOR LOOP TO SHOW ALL ADDED ITEMS  
-                    <tr>
-                      <td>1</td>
-                      <td>Carbon brush for 80KW IEC make DC motor, RPM-750. FR:ILFC200L M/c no:2014194-2</td>
-                      <td>15.5 X 32 X 40</td>
-                      <td>30</td>
-                      <td>300.00</td>
-                    </tr>
-                  </tbody>
-            </table>
-            <br><hr> -->
-
-            <!-- Terms and Conditions Section -->
-
-
-
-
-
-            
-
-<!-- Button trigger modal -->
 {% endblock %}
