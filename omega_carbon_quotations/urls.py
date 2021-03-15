@@ -24,10 +24,18 @@ urlpatterns = [
     path('login/', views.loginuser, name='loginuser'),
     path('logout/', views.logoutuser, name='logoutuser'),
 
-    # Main app URL's
+    # Main app HOME URL
     path('', views.home, name='home'),
-    path('create/', views.createquotation, name='createquotation'),
+    
+    # Create quotation URL
+    path('create-step1/', views.createquotationstep1, name='createquotationstep1'),
+    path('create-step2/', views.createquotationstep2, name='createquotationstep2'),
+    path('create-step3/', views.createquotationstep3, name='createquotationstep3'),
+    
+    # Search quotation URL
     path('search/', views.searchquotation, name='searchquotation'),
-    path('clients/', views.clientslist, name='clientslist')
-
+    
+    # Show all clients URL
+    path('clients/', views.clientslist, name='clientslist'),
+    
 ]

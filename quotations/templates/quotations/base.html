@@ -11,6 +11,10 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpg"  href="{% static 'quotations/omega-carbon.jpg' %}">
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="{% static 'quotations/script.js' %}" type="text/javascript"></script>
 
     <title>Omega Carbon | Quotations</title>
 </head>
@@ -29,7 +33,7 @@
                 <ul class="navbar-nav mr-auto">
         
                         <li class="nav-item {{ current }}">
-                            <a class="nav-link" href="{% url 'createquotation' %}">Create</a>
+                            <a class="nav-link" href="{% url 'createquotationstep1' %}">Create</a>
                         </li>
                         <li class="nav-item {{ completed }}">
                             <a class="nav-link" href="{% url 'searchquotation' %}">Search</a>
@@ -64,7 +68,6 @@
         </div>
 
         <!-- Jquery and popper -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         
         <!-- Bootstrap JS -->

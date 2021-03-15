@@ -1,0 +1,145 @@
+{% extends "quotations/base.html"%}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 text-center">
+        <h3>Create Quotation</h3>
+    </div>
+</div>
+<div class="text-center">
+    <h6>STEP 1: CLIENT DETAILS</h6>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        
+        <div class="jumbotron">
+            <form method="POST" id="selectclientform">
+                {% csrf_token %}
+                <!-- Client Details with Reference Number and dated -->
+                <div class="form-group">
+                    <label for="selectclientinput">Select Client</label>
+                    <input type="text" name="selectedclient" class="form-control" id="selectclientinput">
+                </div>
+                <button type="submit" class="btn btn-primary" name="existingclient" id="oldclientbtn">NEXT</button>
+            </form>
+        </div>
+        
+            <div class="text-right">
+                <a href="#" id="addclientlink">OR ADD NEW CLIENT</a>               
+            </div>
+       
+            <div class="jumbotron" id="addclientform">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+                
+                <form method="post">
+                {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="nameInput">Enter Client Name</label>
+                        <input type="text" name="name" class="form-control" id="nameInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressInput">Enter Client Address</label>
+                        <input name="address" class="form-control" required></input>
+                        <!-- <input type="text" name="address" class="form-control" id="addressInput"> -->
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="referenceInput">Enter Client Email</label>
+                        <input type="text" name="email" class="form-control" id="referenceInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="referenceInput">Enter Client Contact</label>
+                        <input type="text" name="contact" class="form-control" id="referenceInput">
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="newclient">NEXT</button>
+                </form>
+            </div>            
+    </div>
+</div>
+
+            <!-- <div class="form-group">
+                <label for="referenceInput">Enter Reference Number</label>
+                <input type="text" name="referencenumber" class="form-control" id="referenceInput">
+            </div>
+            <div class="form-group">
+                <label for="date">Dated</label>
+                <input type="text" name="date" class="form-control" id="date">
+            </div> -->
+            
+            
+            
+
+            <!-- Quotation item add form -->
+            <!-- <div class="form-group">
+                <label for="itemname">Enter Item</label>
+                <input type="text" name="itemname" class="form-control" id="itemname">
+            </div>
+            <div class="row row-cols-3">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="size">Enter Size</label>
+                        <input type="text" name="size" class="form-control" id="size">  
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text" name="quantity" class="form-control" id="quantity">  
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="rate">Rate</label>
+                        <input type="text" name="rate" class="form-control" id="rate">  
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="text-center">
+                <button type="submit" class="btn btn-outline-success btn-sm" name="add_item_button">
+                    Add Item
+                </button>    
+            </div> -->
+
+            <!-- Quotation Items (display) -->
+            <!-- ADD IF CONDITION (display when there is item added) -->
+            <!-- <table class="table table-borderless">
+                <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Item</th>
+                      <th scope="col">Size</th>
+                      <th scope="col">Qty</th>
+                      <th scope="col">Rate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    Use FOR LOOP TO SHOW ALL ADDED ITEMS  
+                    <tr>
+                      <td>1</td>
+                      <td>Carbon brush for 80KW IEC make DC motor, RPM-750. FR:ILFC200L M/c no:2014194-2</td>
+                      <td>15.5 X 32 X 40</td>
+                      <td>30</td>
+                      <td>300.00</td>
+                    </tr>
+                  </tbody>
+            </table>
+            <br><hr> -->
+
+            <!-- Terms and Conditions Section -->
+
+
+
+
+
+            
+
+<!-- Button trigger modal -->
+{% endblock %}

@@ -4,11 +4,7 @@ from django.db import models
 class Client(models.Model):
     name = models.CharField(max_length=100)
     address = models.TextField()
-    city = models.CharField(max_length=50)
-    district = models.CharField(max_length=50, blank=True)
-    state = models.CharField(max_length=50, blank=True)
-    pincode = models.CharField(max_length= 10)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField(blank=True)
     contact = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
